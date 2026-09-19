@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamouchi Mohamed Hamza Firas | AI & Cybersecurity Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <style>
+        /* Fonts are now managed locally or via system fallbacks for maximum privacy */
+
+        :root {
+            --arch-blue: #1793d1;
+            --debian-red: #d70a53;
+            --slate-dark: #0f1113;
+            --slate-mid: #1e2124;
+            --slate-light: #2d3135;
+            --text-main: #e2e8f0;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--slate-dark);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Premium Grain Texture */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* Animated Aurora Background */
+        .aurora {
+            position: fixed;
+            width: 70vw;
+            height: 70vh;
+            border-radius: 100%;
+            filter: blur(150px);
+            z-index: -1;
+            opacity: 0.08;
+            pointer-events: none;
+            animation: drift 20s infinite alternate ease-in-out;
+        }
+        .aurora-1 {
+            top: -10%;
+            left: -10%;
+            background: var(--arch-blue);
+            animation-delay: 0s;
+        }
+        .aurora-2 {
+            bottom: -10%;
+            right: -10%;
+            background: #4f46e5;
+            animation-delay: -10s;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(10%, 5%) scale(1.1); }
+        }
+
+        .nav-glass {
+            background: rgba(15, 17, 19, 0.75);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .practical-card {
+            background: rgba(45, 49, 53, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .practical-card::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(23, 147, 209, 0.1) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+
+        .practical-card:hover::after {
+            opacity: 1;
+        }
+
+        .practical-card:hover {
+            border-color: rgba(23, 147, 209, 0.4);
+            background: rgba(45, 49, 53, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(23, 147, 209, 0.15);
+        }
+
+        .glare-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glare-effect::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transform: skewX(-25deg);
+            transition: 0.75s;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glare-effect:hover::before {
+            left: 150%;
+        }
+
+        .status-badge {
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 600;
+            background: rgba(63, 68, 74, 0.5);
+            color: var(--text-dim);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-primary {
+            background: var(--arch-blue);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(23, 147, 209, 0.4);
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--slate-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--slate-mid); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--arch-blue); }
+
+        .hero-pattern {
+            background-image: radial-gradient(rgba(45, 49, 53, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+
+    <nav class="fixed w-full z-50 nav-glass">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <img src="images/profile.jpg" alt="Logo" class="w-8 h-8 rounded-full object-cover border border-blue-500/50">
+                <span class="font-semibold tracking-tight text-lg">Zamouchi <span class="text-blue-400">M.H. Firas</span></span>
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-medium text-slate-400">
+                <a href="#about" class="hover:text-white transition-colors">Profile</a>
+                <a href="#intersection" class="hover:text-white transition-colors">The Synergy</a>
+                <a href="#expertise" class="hover:text-white transition-colors">Expertise</a>
+                <a href="#projects" class="hover:text-white transition-colors">Portfolio</a>
+                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
+            </div>
+            <a href="mailto:firasza12@gmail.com" class="btn-primary text-white px-4 py-1.5 rounded text-sm font-medium">
+                Get in Touch
+            </a>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center px-6 hero-pattern">
+        <div class="max-w-4xl mx-auto text-center" data-aos="fade-up">
+            <div class="inline-block px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold mb-6 border border-blue-500/20 mono">
+                CYBERSECURITY & LINUX SPECIALIST
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-tight gradient-text">
+                Advanced Cybersecurity <br>
+                <span class="text-blue-500" style="-webkit-text-fill-color: #3b82f6">& Secure Systems</span>
+            </h1>
+            <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Expertise in low-level Linux mastery, cybersecurity protocol analysis, and secure software development.
+                Focused on kernel-level hardening, cybersecurity automation, and leveraging AI for threat detection.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#projects" class="btn-primary text-white px-8 py-3 rounded font-medium">Explore Projects</a>
+                <a href="#expertise" class="bg-slate-800 hover:bg-slate-700 text-white px-8 py-3 rounded font-medium transition-all border border-slate-700">Core Competencies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Synergy Section -->
+    <section id="intersection" class="py-32 px-6 bg-[#0d0f11]/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Technical Expertise</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">A comprehensive approach to cybersecurity, from low-level binary analysis to high-level AI automation.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="practical-card glare-effect p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-6">
+                        <i class="fas fa-shield-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Cybersecurity Core</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Expertise in TCP/IP, DNS, and HTTPs protocol analysis. Specialized in cybersecurity perimeters, packet inspection, and preventing lateral movement.
+                    </p>
+                </div>
+                <div class="practical-card glare-effect p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-6">
+                        <i class="fab fa-linux text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Linux Mastery</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Advanced administration of Debian and Arch. Focus on kernel-level hardening, secure boot, and minimizing the attack surface for critical cybersecurity infrastructure.
+                    </p>
+                </div>
+                <div class="practical-card glare-effect p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-6">
+                        <i class="fas fa-code text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Secure Development</h3>
+                    <p class="text-slate-400 leading-relaxed text-sm">
+                        Proficient in Python, C, and Modern Web development. Focused on writing memory-safe code and implementing secure software lifecycles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-6 bg-[#141618]/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-16 items-center">
+                <div class="md:col-span-1" data-aos="fade-right">
+                    <div class="aspect-square rounded-3xl overflow-hidden border-2 border-slate-700 bg-slate-800 shadow-2xl">
+                        <img src="images/profile.jpg" alt="Profile" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                </div>
+                <div class="md:col-span-2" data-aos="fade-left">
+                    <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                        <span class="w-8 h-1 bg-blue-500 inline-block"></span>
+                        Professional Profile
+                    </h2>
+                    <p class="text-lg text-slate-400 leading-relaxed mb-6">
+                        I am a Cybersecurity Specialist with a deep focus on low-level system security and robust network defense.
+                        With a degree from <span class="text-white font-medium">Badji Mokhtar University, Annaba</span>, I specialize in hardening critical infrastructure and analyzing complex network protocols to identify and mitigate vulnerabilities.
+                    </p>
+                    <p class="text-lg text-slate-400 leading-relaxed">
+                        My expertise spans Linux kernel hardening, network traffic analysis, and the strategic application of AI to enhance threat detection.
+                        I focus on building a foundation of absolute technical mastery in traditional cybersecurity to ensure high-assurance security in modern environments.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="py-32 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-4">Core Competencies</h2>
+                <p class="text-slate-400">A multidisciplinary approach to securing the modern intelligence layer.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Networking & Protocols -->
+                <div class="practical-card p-8 rounded-2xl" data-aos="fade-up">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-network-wired text-blue-400 text-xl"></i>
+                        <h3 class="font-bold text-lg">Networking & Protocols</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex justify-between items-center"><span>TCP/IP & Packet Analysis</span> <span class="status-badge">Specialist</span></li>
+                        <li class="flex justify-between items-center"><span>DNS / HTTPs / SSL</span> <span class="status-badge">Advanced</span></li>
+                        <li class="flex justify-between items-center"><span>Network Architecture</span> <span class="status-badge">Advanced</span></li>
+                    </ul>
+                </div>
+
+                <!-- Linux Mastery -->
+                <div class="practical-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fab fa-linux text-blue-400 text-xl"></i>
+                        <h3 class="font-bold text-lg">Linux Mastery</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex justify-between items-center"><span>Kernel Hardening</span> <span class="status-badge">Specialist</span></li>
+                        <li class="flex justify-between items-center"><span>Debian/Arch Administration</span> <span class="status-badge">Specialist</span></li>
+                        <li class="flex justify-between items-center"><span>Secure Boot & UEFI</span> <span class="status-badge">Advanced</span></li>
+                    </ul>
+                </div>
+
+                <!-- AI-Driven Defense -->
+                <div class="practical-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-robot text-blue-400 text-xl"></i>
+                        <h3 class="font-bold text-lg">AI-Driven Defense</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex justify-between items-center"><span>Anomaly Detection</span> <span class="status-badge">Proficient</span></li>
+                        <li class="flex justify-between items-center"><span>AI-Powered Auditing</span> <span class="status-badge">Proficient</span></li>
+                        <li class="flex justify-between items-center"><span>LLM Sec-Ops</span> <span class="status-badge">Proficient</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 px-6 bg-[#141618]/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-4">Technical Engagements</h2>
+                <p class="text-slate-400">Foundational tools and research projects implementing security best practices.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="practical-card glare-effect p-8 rounded-2xl group" data-aos="fade-up">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="p-3 bg-slate-700 rounded-lg text-blue-400">
+                            <i class="fas fa-search text-xl"></i>
+                        </div>
+                        <a href="https://github.com/firasguts" class="text-slate-500 hover:text-white transition-colors">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Network Vulnerability Scanner</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        A pragmatic Python implementation for scanning open ports and identifying service banners.
+                        Designed as the core reconnaissance engine for automated AI-driven threat intelligence.
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="status-badge">Python 3.11</span>
+                        <span class="status-badge">Socket API</span>
+                        <span class="status-badge">Reconnaissance</span>
+                    </div>
+                </div>
+
+                <div class="practical-card glare-effect p-8 rounded-2xl group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="p-3 bg-slate-700 rounded-lg text-blue-400">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                        <a href="https://github.com/firasguts" class="text-slate-500 hover:text-white transition-colors">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Linux Hardening Suite</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Curated automation scripts for hardening Debian-based systems.
+                        Established as the secure baseline necessary for deploying sensitive AI infrastructure and model weights.
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="status-badge">Bash</span>
+                        <span class="status-badge">CIS Benchmarks</span>
+                        <span class="status-badge">Hardening</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12" data-aos="fade-up">Get in Touch</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="mailto:firasza12@gmail.com" class="practical-card p-6 rounded-2xl flex flex-col items-center gap-4 hover:border-blue-500 transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-envelope text-blue-400 text-2xl"></i>
+                    <span class="font-medium">Email</span>
+                    <span class="text-xs text-slate-500 mono">firasza12@gmail.com</span>
+                </a>
+                <a href="https://github.com/firasguts" target="_blank" rel="noopener noreferrer" class="practical-card p-6 rounded-2xl flex flex-col items-center gap-4 hover:border-blue-500 transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fab fa-github text-blue-400 text-2xl"></i>
+                    <span class="font-medium">GitHub</span>
+                    <span class="text-xs text-slate-500 mono">firasguts</span>
+                </a>
+                <a href="https://www.linkedin.com/in/zamouchi-mohamed-hamza-firas-087b88286" target="_blank" rel="noopener noreferrer" class="practical-card p-6 rounded-2xl flex flex-col items-center gap-4 hover:border-blue-500 transition-all" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fab fa-linkedin-in text-blue-400 text-2xl"></i>
+                    <span class="font-medium">LinkedIn</span>
+                    <span class="text-xs text-slate-500 mono">M.H. Firas</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-800 text-center text-slate-500 text-sm mono">
+        <p>© 2026 Zamouchi M.H. Firas. Focused on the intersection of AI and Cybersecurity.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+    </script>
+</body>
+</html>
