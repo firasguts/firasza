@@ -96,6 +96,27 @@
             overflow: hidden;
         }
 
+        .practical-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transition: all 0.6s;
+            pointer-events: none;
+        }
+
+        .practical-card:hover::before {
+            left: 100%;
+        }
+
         .practical-card:hover {
             border-color: rgba(23, 147, 209, 0.4);
             background: rgba(45, 49, 53, 0.4);
@@ -237,14 +258,11 @@
                         <span class="w-8 h-1 bg-blue-500 inline-block"></span>
                         <span class="text-blue-400">Profile</span>
                     </h2>
-                    <p class="text-lg text-slate-400 leading-relaxed mb-6">
-                        I am in Cybersecurity with a focus on system security and robust network defense.
-                        With a degree from <span class="text-white font-medium">Badji Mokhtar University, Annaba</span>, I specialize in hardening critical infrastructure and analyzing complex network protocols to identify and mitigate vulnerabilities.
-                    </p>
-                    <p class="text-lg text-slate-400 leading-relaxed">
-                        My skills span Linux administration, network traffic analysis, and the strategic application of AI to enhance threat detection.
-                        I focus on building a foundation of technical skill in traditional cybersecurity to ensure high-assurance security in modern environments.
-                    </p>
+                    <div class="relative">
+                        <p id="profile-text-1" class="text-lg text-white leading-relaxed mb-6 min-h-[3em]"></p>
+                        <p id="profile-text-2" class="text-lg text-white leading-relaxed min-h-[3em]"></p>
+                        <span id="profile-cursor" class="cursor absolute" style="display:none"></span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -404,9 +422,10 @@
                 element.appendChild(span);
                 const rect = span.getBoundingClientRect();
 
-                // Position cursor exactly at the end of the last character
-                cursor.style.left = (rect.right - element.getBoundingClientRect().left) + 'px';
-                cursor.style.top = (rect.top - element.getBoundingClientRect().top) + 'px';
+                // Position cursor relative to the parent container
+                const parentRect = element.parentElement.getBoundingClientRect();
+                cursor.style.left = (rect.right - parentRect.left) + 'px';
+                cursor.style.top = (rect.top - parentRect.top) + 'px';
 
                 element.removeChild(span);
                 await new Promise(resolve => setTimeout(resolve, speed));
@@ -419,15 +438,33 @@
             const line2 = "& Secure Systems";
             const line3 = "Low-level Linux mastery, cybersecurity protocol analysis, and secure software development. Focused on kernel-level hardening, cybersecurity automation, and leveraging AI for threat detection.";
 
-            // Line 1
+            // Hero Section (Starts on load)
             await typeText('type-line-1', 'cursor-1', line1, 80);
-
-            // Line 2
             await typeText('type-line-2', 'cursor-2', line2, 80);
-
-            // Line 3
             await typeText('type-line-3', 'cursor-3', line3, 50);
         }
+
+        // Intersection Observer for Profile Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const profileSection = document.getElementById('about');
+            const profile1 = "I am in Cybersecurity with a focus on system security and robust network defense. With a degree from Badji Mokhtar University, Annaba, I specialize in hardening critical infrastructure and analyzing complex network protocols to identify and mitigate vulnerabilities.";
+            const profile2 = "My skills span Linux administration, network traffic analysis, and the strategic application of AI to enhance threat detection. I focus on building a foundation of technical skill in traditional cybersecurity to ensure high-assurance security in modern environments.";
+            let animated = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        (async () => {
+                            await typeText('profile-text-1', 'profile-cursor', profile1, 30);
+                            await typeText('profile-text-2', 'profile-cursor', profile2, 30);
+                        })();
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            observer.observe(profileSection);
+        });
     </script>
 </body>
 </html>
