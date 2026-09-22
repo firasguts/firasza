@@ -139,9 +139,14 @@
         }
 
         .nav-glass {
-            background: rgba(15, 17, 19, 0.97);
+            background: rgba(15, 17, 19, 0.95);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-top: none;
+            box-shadow:
+                0 0 10px rgba(59, 130, 246, 0.1),
+                0 0 30px rgba(59, 130, 246, 0.05),
+                inset 0 0 15px rgba(59, 130, 246, 0.02);
         }
 
         .brand-button {
@@ -266,9 +271,315 @@
         }
 
         .gradient-text {
-            background: linear-gradient(to right, #fff, #94a3b8);
+            background: linear-gradient(90deg, #fff, #94a3b8, #60a5fa, #94a3b8, #fff);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shimmer 8s linear infinite;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--slate-dark); }
+        ::-webkit-scrollbar-thumb {
+            background: rgba(59, 130, 246, 0.25);
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(59, 130, 246, 0.45); }
+
+        /* Text selection */
+        ::selection {
+            background: rgba(59, 130, 246, 0.3);
+            color: #fff;
+        }
+
+        /* Page load fade-in */
+        body { animation: pageLoad 1s ease-out; }
+        @keyframes pageLoad {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Gradient text shimmer */
+        @keyframes shimmer {
+            0% { background-position: 0% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* Profile image hover */
+        .profile-img-container {
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .profile-img-container:hover {
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 35px rgba(59, 130, 246, 0.2), 0 25px 50px rgba(0, 0, 0, 0.4);
+            transform: scale(1.03);
+        }
+
+        /* Floating particles */
+        .particle {
+            position: fixed;
+            background: rgba(59, 130, 246, 0.35);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            animation: float-up linear infinite;
+        }
+        @keyframes float-up {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+        }
+
+        /* Card icon float on hover */
+        .practical-card i {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .practical-card:hover i {
+            transform: translateY(-4px);
+        }
+
+        /* Card 3D tilt */
+        .practical-card {
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* Contact icon pulse */
+        #contact .practical-card:hover {
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15), 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+        }
+        #contact .practical-card:hover i {
+            animation: icon-pulse 1.5s ease-in-out infinite;
+        }
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Nav link animated underline */
+        nav a[href^="#"] {
+            position: relative;
+        }
+        nav a[href^="#"]::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: #3b82f6;
+            border-radius: 2px;
+            transform: translateX(-50%);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+        }
+        nav a[href^="#"]:hover::after {
+            width: 100%;
+        }
+
+        /* Button ripple */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.12);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+        }
+        .btn-primary:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        /* Footer gradient border */
+        footer {
+            border-image: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.3), transparent) 1;
+        }
+
+        /* Status badge shimmer */
+        .status-badge {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .status-badge::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+            transition: left 0.5s ease;
+        }
+        .status-badge:hover::after { left: 100%; }
+        .status-badge:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            color: #93c5fd;
+        }
+
+        /* Subtle scanline overlay */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 9999;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.015) 2px,
+                rgba(0, 0, 0, 0.015) 4px
+            );
+        }
+
+        /* Nav smooth transition for scroll effect */
+        .nav-glass {
+            transition: background 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+
+        /* Section heading glow */
+        section h2 {
+            text-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+        }
+
+        /* === BACKGROUND DEPTH LAYERS === */
+
+        /* Extra aurora blobs */
+        .aurora-4 {
+            top: 50%;
+            left: 30%;
+            width: 50vw;
+            height: 50vh;
+            background: radial-gradient(circle, rgba(15, 17, 19, 0.9) 0%, #2563eb 42%, transparent 74%);
+            animation-duration: 22s;
+            animation-delay: -8s;
+            opacity: 0.025;
+        }
+        .aurora-5 {
+            bottom: 30%;
+            left: -15%;
+            width: 60vw;
+            height: 60vh;
+            background: radial-gradient(circle, rgba(15, 17, 19, 0.9) 0%, #1e40af 42%, transparent 74%);
+            animation-duration: 32s;
+            animation-delay: -15s;
+            opacity: 0.028;
+        }
+
+        /* Diagonal secondary grid */
+        .cyber-grid-diagonal {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.1;
+            background-image:
+                linear-gradient(45deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px),
+                linear-gradient(-45deg, rgba(59, 130, 246, 0.12) 1px, transparent 1px);
+            background-size: 80px 80px;
+            mask-image: radial-gradient(ellipse at center, black 0%, transparent 60%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 60%);
+            animation: grid-diag-drift 20s ease-in-out infinite alternate;
+        }
+        @keyframes grid-diag-drift {
+            from { background-position: 0 0; }
+            to { background-position: 80px 80px; }
+        }
+
+        /* Vignette with breathing */
+        .vignette {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, transparent 35%, rgba(0, 0, 0, 0.5) 100%);
+            animation: vignette-breathe 10s ease-in-out infinite alternate;
+        }
+        @keyframes vignette-breathe {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        /* Depth orbs - blurred glowing spots at different scales */
+        .depth-orb {
+            position: fixed;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            animation: orb-float ease-in-out infinite alternate;
+        }
+        .depth-orb-1 {
+            width: 220px;
+            height: 220px;
+            top: 12%;
+            left: 8%;
+            background: rgba(59, 130, 246, 0.06);
+            filter: blur(50px);
+            animation-duration: 18s;
+        }
+        .depth-orb-2 {
+            width: 140px;
+            height: 140px;
+            top: 55%;
+            right: 12%;
+            background: rgba(96, 165, 250, 0.05);
+            filter: blur(35px);
+            animation-duration: 14s;
+            animation-delay: -5s;
+        }
+        .depth-orb-3 {
+            width: 320px;
+            height: 320px;
+            bottom: 8%;
+            left: 35%;
+            background: rgba(37, 99, 235, 0.04);
+            filter: blur(60px);
+            animation-duration: 24s;
+            animation-delay: -12s;
+        }
+        .depth-orb-4 {
+            width: 100px;
+            height: 100px;
+            top: 35%;
+            right: 30%;
+            background: rgba(147, 197, 253, 0.05);
+            filter: blur(25px);
+            animation-duration: 16s;
+            animation-delay: -8s;
+        }
+        @keyframes orb-float {
+            0% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(25px, -30px) scale(1.08); }
+            66% { transform: translate(-15px, 20px) scale(0.94); }
+            100% { transform: translate(20px, -10px) scale(1.05); }
+        }
+
+        /* Ambient center glow pulse */
+        .ambient-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 100vw;
+            height: 100vh;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: -1;
+            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.03) 0%, transparent 55%);
+            animation: ambient-pulse 8s ease-in-out infinite alternate;
+        }
+        @keyframes ambient-pulse {
+            0% { opacity: 0.4; transform: translate(-50%, -50%) scale(1); }
+            100% { opacity: 1; transform: translate(-50%, -50%) scale(1.15); }
         }
     </style>
 </head>
@@ -276,7 +587,16 @@
     <div class="aurora aurora-1"></div>
     <div class="aurora aurora-2"></div>
     <div class="aurora aurora-3"></div>
+    <div class="aurora aurora-4"></div>
+    <div class="aurora aurora-5"></div>
     <div class="cyber-grid" aria-hidden="true"></div>
+    <div class="cyber-grid-diagonal" aria-hidden="true"></div>
+    <div class="vignette"></div>
+    <div class="depth-orb depth-orb-1"></div>
+    <div class="depth-orb depth-orb-2"></div>
+    <div class="depth-orb depth-orb-3"></div>
+    <div class="depth-orb depth-orb-4"></div>
+    <div class="ambient-glow"></div>
 
     <nav class="fixed w-full z-50 nav-glass">
         <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
@@ -587,6 +907,72 @@
             }, { threshold: 0.2 });
 
             observer.observe(profileSection);
+
+            // --- Floating particles ---
+            (function createParticles() {
+                for (let i = 0; i < 18; i++) {
+                    const p = document.createElement('div');
+                    p.classList.add('particle');
+                    p.style.left = Math.random() * 100 + 'vw';
+                    p.style.animationDuration = (Math.random() * 15 + 12) + 's';
+                    p.style.animationDelay = (Math.random() * 12) + 's';
+                    const size = (Math.random() * 2.5 + 1) + 'px';
+                    p.style.width = size;
+                    p.style.height = size;
+                    document.body.appendChild(p);
+                }
+            })();
+
+            // --- 3D card tilt ---
+            document.querySelectorAll('.practical-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const rotateX = ((y - rect.height / 2) / rect.height) * -8;
+                    const rotateY = ((x - rect.width / 2) / rect.width) * 8;
+                    card.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                });
+            });
+
+            // --- Nav scroll effect ---
+            const nav = document.querySelector('.nav-glass');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 60) {
+                    nav.style.background = 'rgba(15, 17, 19, 0.98)';
+                    nav.style.boxShadow = '0 0 20px rgba(59, 130, 246, 0.15), 0 0 50px rgba(59, 130, 246, 0.08)';
+                } else {
+                    nav.style.background = '';
+                    nav.style.boxShadow = '';
+                }
+            });
+
+            // --- Multi-layer parallax ---
+            window.addEventListener('scroll', () => {
+                const y = window.scrollY;
+
+                // Auroras - slow, far away
+                document.querySelectorAll('.aurora').forEach((el, i) => {
+                    el.style.transform = `translateY(${y * (i + 1) * 0.02}px)`;
+                });
+
+                // Depth orbs - varied speeds for depth illusion
+                const orbs = document.querySelectorAll('.depth-orb');
+                const orbSpeeds = [0.04, 0.06, 0.03, 0.07];
+                orbs.forEach((orb, i) => {
+                    const speed = orbSpeeds[i] || 0.04;
+                    orb.style.transform = `translateY(${y * speed}px)`;
+                });
+
+                // Diagonal grid - very subtle shift
+                const diagGrid = document.querySelector('.cyber-grid-diagonal');
+                if (diagGrid) {
+                    diagGrid.style.backgroundPosition = `${y * 0.015}px ${y * 0.015}px`;
+                }
+            });
         });
     </script>
 </body>
