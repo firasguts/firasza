@@ -2,8 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="shortcut icon" href="images/favicon.png" type="image/png">
-    <link rel="icon" href="images/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="images/favicon.png">
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zamouchi Mohamed Hamza Firas | AI & Cybersecurity Specialist</title>
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,7 +25,7 @@
         }
 
         body {
-            font-family: 'Outfit', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
             background-color: var(--slate-dark);
             color: var(--text-main);
             scroll-behavior: smooth;
@@ -47,22 +51,44 @@
 
         .aurora {
             position: fixed;
-            width: 70vw;
-            height: 70vh;
+            width: 80vw;
+            height: 80vh;
             border-radius: 100%;
-            filter: blur(150px);
+            filter: blur(100px);
             z-index: -1;
-            opacity: 0.08;
+            opacity: 0.05;
             pointer-events: none;
-            animation: drift 20s infinite alternate ease-in-out;
+            animation: drift 25s infinite alternate ease-in-out;
+            mix-blend-mode: screen;
         }
-        .aurora-1 { top: -10%; left: -10%; background: var(--arch-blue); animation-delay: 0s; }
-        .aurora-2 { bottom: -10%; right: -10%; background: #4f46e5; animation-delay: -10s; }
+        .aurora-1 {
+            top: -10%;
+            left: -10%;
+            background: radial-gradient(circle, var(--arch-blue) 0%, transparent 70%);
+            animation-duration: 20s;
+        }
+        .aurora-2 {
+            bottom: -10%;
+            right: -10%;
+            background: radial-gradient(circle, #3b82f6 0%, transparent 70%);
+            animation-duration: 30s;
+            animation-delay: -10s;
+        }
+        .aurora-3 {
+            top: 20%;
+            right: -10%;
+            background: radial-gradient(circle, #60a5fa 0%, transparent 70%);
+            animation-duration: 25s;
+            animation-delay: -5s;
+        }
 
         @keyframes drift {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(10%, 5%) scale(1.1); }
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            33% { transform: translate(5%, 10%) scale(1.1) rotate(10deg); }
+            66% { transform: translate(-5%, 5%) scale(0.9) rotate(-10deg); }
+            100% { transform: translate(10%, -5%) scale(1.05) rotate(5deg); }
         }
+
 
         /* TERMINAL CURSOR ANIMATION */
         .cursor {
@@ -161,6 +187,7 @@
 <body onload="startTerminalAnimation()">
     <div class="aurora aurora-1"></div>
     <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
 
     <nav class="fixed w-full z-50 nav-glass">
         <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
