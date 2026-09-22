@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/favicon.png">
+    <link rel="icon" type="image/png" sizes="256x256" href="images/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="images/favicon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0f1113">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zamouchi Mohamed Hamza Firas | AI & Cybersecurity Specialist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --arch-blue: #1793d1;
+            --debian-red: #d70a53;
+            --slate-dark: #0f1113;
+            --slate-mid: #1e2124;
+            --slate-light: #2d3135;
+            --text-main: #e2e8f0;
+            --text-dim: #94a3b8;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--slate-dark);
+            color: var(--text-main);
+            scroll-behavior: smooth;
+            position: relative;
+            isolation: isolate;
+            overflow-x: hidden;
+        }
+
+        /* Applied hero background to the entire body */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.02;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        .aurora {
+            position: fixed;
+            width: 75vw;
+            height: 75vh;
+            border-radius: 100%;
+            filter: blur(130px);
+            z-index: -1;
+            opacity: 0.035;
+            pointer-events: none;
+            animation: drift 26s infinite alternate ease-in-out;
+            mix-blend-mode: screen;
+        }
+        .aurora-1 {
+            top: -10%;
+            left: -10%;
+            background: radial-gradient(circle, rgba(15, 17, 19, 0.9) 0%, var(--arch-blue) 42%, transparent 74%);
+            animation-duration: 24s;
+        }
+        .aurora-2 {
+            bottom: -10%;
+            right: -10%;
+            background: radial-gradient(circle, rgba(15, 17, 19, 0.9) 0%, #3b82f6 42%, transparent 74%);
+            animation-duration: 30s;
+            animation-delay: -10s;
+        }
+        .aurora-3 {
+            top: 20%;
+            right: -10%;
+            background: radial-gradient(circle, rgba(15, 17, 19, 0.9) 0%, #60a5fa 42%, transparent 74%);
+            animation-duration: 27s;
+            animation-delay: -5s;
+        }
+
+        .cyber-grid {
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+            opacity: 0.46;
+            background-image:
+                linear-gradient(rgba(23, 147, 209, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(23, 147, 209, 0.2) 1px, transparent 1px);
+            background-size: 52px 52px;
+            mask-image: radial-gradient(ellipse at center, black 0%, transparent 72%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 0%, transparent 72%);
+            animation: grid-drift 12s ease-in-out infinite alternate, grid-flash 7s ease-in-out infinite;
+        }
+
+        @keyframes drift {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); }
+            33% { transform: translate(4%, 5%) scale(1.05) rotate(3deg); }
+            66% { transform: translate(-4%, 3%) scale(0.96) rotate(-3deg); }
+            100% { transform: translate(5%, -3%) scale(1.03) rotate(2deg); }
+        }
+
+        @keyframes grid-drift {
+            from { background-position: 0 0; opacity: 0.34; }
+            to { background-position: 52px 52px; opacity: 0.58; }
+        }
+
+        @keyframes grid-flash {
+            0%, 38%, 100% { filter: brightness(1) saturate(1); box-shadow: none; }
+            45% { filter: brightness(2) saturate(1.7) drop-shadow(0 0 10px rgba(23, 147, 209, 0.55)); }
+            52% { filter: brightness(3.2) saturate(2) drop-shadow(0 0 22px rgba(23, 147, 209, 0.85)); box-shadow: inset 0 0 140px rgba(23, 147, 209, 0.25); }
+            62% { filter: brightness(1) saturate(1); box-shadow: none; }
+        }
+
+
+        /* TERMINAL CURSOR ANIMATION */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 1.2em;
+            background-color: white;
+            margin-left: 2px;
+            animation: blink 2s infinite;
+            vertical-align: middle;
+            line-height: 1;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .nav-glass {
+            background: rgba(15, 17, 19, 0.97);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .brand-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin: -0.375rem -0.5rem;
+            padding: 0.375rem 0.5rem;
+            overflow: visible;
+            border: 0;
+            border-radius: 999px;
+            background: transparent;
+            color: inherit;
+            cursor: pointer;
+            transition: color 200ms ease, filter 200ms ease;
+        }
+
+        .brand-button::after {
+            content: "";
+            position: absolute;
+            inset: -0.35rem;
+            border: 1px solid rgba(59, 130, 246, 0.8);
+            border-radius: inherit;
+            box-shadow: 0 0 18px rgba(59, 130, 246, 0.6);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 200ms ease, transform 200ms ease;
+        }
+
+        .brand-button:hover {
+            color: #bfdbfe;
+            filter: drop-shadow(0 0 7px rgba(59, 130, 246, 0.7));
+        }
+
+        .brand-button:hover::after {
+            opacity: 0.7;
+            transform: scale(1.04);
+        }
+
+        .brand-button.is-clicked {
+            animation: brand-glow 650ms ease-out;
+        }
+
+        .brand-button.is-clicked::after {
+            animation: brand-ripple 650ms ease-out;
+        }
+
+        @keyframes brand-glow {
+            35% { color: #93c5fd; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.9)); }
+            100% { color: inherit; filter: none; }
+        }
+
+        @keyframes brand-ripple {
+            0% { opacity: 0; transform: scale(0.82); }
+            25% { opacity: 1; }
+            100% { opacity: 0; transform: scale(1.16); }
+        }
+
+        .practical-card {
+            background: rgba(45, 49, 53, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .practical-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.05),
+                transparent
+            );
+            transition: all 0.6s;
+            pointer-events: none;
+        }
+
+        .practical-card:hover::before {
+            left: 100%;
+        }
+
+        .practical-card:hover {
+            border-color: rgba(23, 147, 209, 0.4);
+            background: rgba(45, 49, 53, 0.4);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7), 0 0 30px rgba(23, 147, 209, 0.15);
+        }
+
+        .status-badge {
+            font-size: 0.65rem;
+            padding: 2px 8px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            font-weight: 600;
+            background: rgba(63, 68, 74, 0.5);
+            color: var(--text-dim);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .btn-primary {
+            background: var(--arch-blue);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-primary:hover {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(23, 147, 209, 0.4);
+        }
+
+        .hero-pattern {
+            background-image: radial-gradient(rgba(45, 49, 53, 0.5) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body onload="startTerminalAnimation()">
+    <div class="aurora aurora-1"></div>
+    <div class="aurora aurora-2"></div>
+    <div class="aurora aurora-3"></div>
+    <div class="cyber-grid" aria-hidden="true"></div>
+
+    <nav class="fixed w-full z-50 nav-glass">
+        <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+            <button type="button" class="brand-button" aria-label="Activate Zamouchi M.H. Firas blue effect">
+                <img src="images/profile.jpg" alt="Logo" class="w-8 h-8 rounded-full object-cover border border-blue-500/50">
+                <span class="font-semibold tracking-tight text-lg">Zamouchi <span class="text-blue-400">M.H. Firas</span></span>
+            </button>
+            <div class="hidden md:flex items-center justify-center gap-6 text-sm font-medium text-blue-400 absolute left-1/2 transform -translate-x-1/2">
+                <a href="#about" class="hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">Profile</a>
+                <div class="w-px h-4 bg-slate-700"></div>
+                <a href="#intersection" class="hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">The Synergy</a>
+                <div class="w-px h-4 bg-slate-700"></div>
+                <a href="#expertise" class="hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">Expertise</a>
+                <div class="w-px h-4 bg-slate-700"></div>
+                <a href="#projects" class="hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">Portfolio</a>
+                <div class="w-px h-4 bg-slate-700"></div>
+                <a href="#contact" class="hover:text-white transition-all duration-300 hover:drop-shadow-[0_0_8px_rgba(59,130,246,0.8)]">Contact</a>
+            </div>
+            <div class="w-[180px]"></div>
+        </div>
+        </div>
+    </nav>
+
+    <section class="min-h-screen flex items-center px-6 hero-pattern">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="inline-block px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-bold mb-6 border border-blue-500/20 mono">
+                CYBERSECURITY & LINUX SPECIALIST
+            </div>
+            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-tight gradient-text">
+                <span id="type-line-1"></span><span id="cursor-1" class="cursor"></span><br>
+                <span id="type-line-2" class="text-blue-500" style="-webkit-text-fill-color: #3b82f6"></span><span id="cursor-2" class="cursor" style="display:none"></span>
+            </h1>
+            <div class="relative inline-block">
+                <p id="type-line-3" class="text-lg text-slate-100 mb-10 max-w-2xl mx-auto leading-relaxed min-h-[3em] relative z-10"></p>
+                <span id="cursor-3" class="cursor absolute" style="display:none"></span>
+            </div>
+            <div class="flex justify-center gap-8">
+                <a href="#projects" class="btn-primary text-white px-8 py-3 rounded font-bold">Explore Projects</a>
+                <a href="#expertise" class="btn-primary text-white px-8 py-3 rounded font-bold transition-all border border-slate-700">Core Competencies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Synergy Section -->
+    <section id="intersection" class="py-32 px-6 hero-pattern">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-blue-400">Technical Expertise</h2>
+                <p class="text-white max-w-2xl mx-auto">A comprehensive approach to cybersecurity, from low-level binary analysis to high-level AI automation.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="practical-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-6">
+                        <i class="fas fa-shield-alt text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-blue-400">Cybersecurity Core</h3>
+                    <p class="text-slate-100 leading-relaxed text-sm">
+                        TCP/IP, DNS, and HTTPs protocol analysis. Specialized in cybersecurity perimeters, packet inspection, and preventing lateral movement.
+                    </p>
+                </div>
+                <div class="practical-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-6">
+                        <i class="fab fa-linux text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-blue-400">Linux Administration</h3>
+                    <p class="text-slate-100 leading-relaxed text-sm">
+                        Administration of Debian and Arch. Focus on kernel-level hardening, secure boot, and minimizing the attack surface for critical cybersecurity infrastructure.
+                    </p>
+                </div>
+                <div class="practical-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-12 h-12 bg-blue-500/20 rounded-lg flex items-center justify-center text-blue-400 mb-6">
+                        <i class="fas fa-code text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-blue-400">Secure Development</h3>
+                    <p class="text-slate-100 leading-relaxed text-sm">
+                        Python, C, and Modern Web development. Focused on writing memory-safe code and implementing secure software lifecycles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-6 hero-pattern">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-3 gap-16 items-center">
+                <div class="md:col-span-1" data-aos="fade-right">
+                    <div class="profile-img-container aspect-square rounded-3xl overflow-hidden border-2 border-slate-700 bg-slate-800 shadow-2xl">
+                        <img src="images/profile.jpg" alt="Profile" class="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity duration-500">
+                    </div>
+                </div>
+                <div class="md:col-span-2" data-aos="fade-left">
+                    <h2 class="text-3xl font-bold mb-6 flex items-center gap-3">
+                        <span class="w-8 h-1 bg-blue-500 inline-block"></span>
+                        <span class="text-blue-400">Profile</span>
+                    </h2>
+                    <div class="relative">
+                        <p id="profile-text-1" class="text-lg text-white leading-relaxed mb-6 min-h-[3em]"></p>
+                        <p id="profile-text-2" class="text-lg text-white leading-relaxed min-h-[3em]"></p>
+                        <span id="profile-cursor" class="cursor absolute" style="display:none"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section -->
+    <section id="expertise" class="py-32 px-6 hero-pattern">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-4 text-blue-400">Core Competencies</h2>
+                <p class="text-white">A multidisciplinary approach to securing the modern intelligence layer.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="practical-card p-8 rounded-2xl" data-aos="fade-up">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-network-wired text-blue-400 text-xl"></i>
+                        <h3 class="font-bold text-lg">Networking & Protocols</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex justify-between items-center"><span>TCP/IP & Packet Analysis</span></li>
+                        <li class="flex justify-between items-center"><span>DNS / HTTPs / SSL</span></li>
+                        <li class="flex justify-between items-center"><span>Network Architecture</span></li>
+                    </ul>
+                </div>
+
+                <div class="practical-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fab fa-linux text-blue-400 text-xl"></i>
+                        <h3 class="font-bold text-lg">Linux Administration</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex justify-between items-center"><span>Linux Administration</span></li>
+                        <li class="flex justify-between items-center"><span>Debian/Arch Administration</span></li>
+                        <li class="flex justify-between items-center"><span>Secure Boot & UEFI</span></li>
+                    </ul>
+                </div>
+
+                <div class="practical-card p-8 rounded-2xl" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center gap-3 mb-6">
+                        <i class="fas fa-robot text-blue-400 text-xl"></i>
+                        <h3 class="font-bold text-lg">AI-Driven Defense</h3>
+                    </div>
+                    <ul class="space-y-4 text-sm text-slate-400">
+                        <li class="flex justify-between items-center"><span>Anomaly Detection</span></li>
+                        <li class="flex justify-between items-center"><span>AI-Powered Auditing</span></li>
+                        <li class="flex justify-between items-center"><span>LLM Sec-Ops</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-32 px-6 hero-pattern">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-3xl font-bold mb-4 text-blue-400">Technical Engagements</h2>
+                <p class="text-white">Foundational tools and research projects implementing security best practices.</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="practical-card glare-effect p-8 rounded-2xl group" data-aos="fade-up">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="p-3 bg-slate-700 rounded-lg text-blue-400">
+                            <i class="fas fa-search text-xl"></i>
+                        </div>
+                        <a href="https://github.com/firasguts" class="text-slate-500 hover:text-white transition-colors">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Network Vulnerability Scanner</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        A pragmatic Python implementation for scanning open ports and identifying service banners.
+                        Designed as the core reconnaissance engine for automated AI-driven threat intelligence.
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="status-badge">Python 3.11</span>
+                        <span class="status-badge">Socket API</span>
+                        <span class="status-badge">Reconnaissance</span>
+                    </div>
+                </div>
+
+                <div class="practical-card glare-effect p-8 rounded-2xl group" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="p-3 bg-slate-700 rounded-lg text-blue-400">
+                            <i class="fas fa-shield-alt text-xl"></i>
+                        </div>
+                        <a href="https://github.com/firasguts" class="text-slate-500 hover:text-white transition-colors">
+                            <i class="fab fa-github text-2xl"></i>
+                        </a>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-3">Linux Hardening Suite</h3>
+                    <p class="text-slate-400 mb-6 leading-relaxed">
+                        Curated automation scripts for hardening Debian-based systems.
+                        Established as the secure baseline necessary for deploying sensitive AI infrastructure and model weights.
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="status-badge">Bash</span>
+                        <span class="status-badge">CIS Benchmarks</span>
+                        <span class="status-badge">Hardening</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-32 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-12 text-blue-400" data-aos="fade-up">Get in Touch</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <a href="mailto:firasza12@gmail.com" class="practical-card p-6 rounded-2xl flex flex-col items-center gap-4 hover:border-blue-500 transition-all" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-envelope text-blue-400 text-2xl"></i>
+                    <span class="font-medium text-white">Email</span>
+                    <span class="text-xs text-white/60 mono">firasza12@gmail.com</span>
+                </a>
+                <a href="https://github.com/firasguts" target="_blank" rel="noopener noreferrer" class="practical-card p-6 rounded-2xl flex flex-col items-center gap-4 hover:border-blue-500 transition-all" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fab fa-github text-blue-400 text-2xl"></i>
+                    <span class="font-medium text-white">GitHub</span>
+                    <span class="text-xs text-white/60 mono">firasguts</span>
+                </a>
+                <a href="https://www.linkedin.com/in/zamouchi-mohamed-hamza-firas-087b88286" target="_blank" rel="noopener noreferrer" class="practical-card p-6 rounded-2xl flex flex-col items-center gap-4 hover:border-blue-500 transition-all" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fab fa-linkedin-in text-blue-400 text-2xl"></i>
+                    <span class="font-medium text-white">LinkedIn</span>
+                    <span class="text-xs text-white/60 mono">M.H. Firas</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-800 text-center text-slate-500 text-sm mono">
+        <p>© 2026 Zamouchi M.H. Firas. Focused on the intersection of AI and Cybersecurity.</p>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            easing: 'ease-in-out'
+        });
+
+        async function typeText(elementId, cursorId, text, speed = 50) {
+            const element = document.getElementById(elementId);
+            const cursor = document.getElementById(cursorId);
+
+            if (!cursor) return;
+            cursor.style.display = 'inline-block';
+
+            for (let i = 0; i < text.length; i++) {
+                element.innerHTML += text.charAt(i);
+
+                // Measure the position of the last character
+                const span = document.createElement('span');
+                span.innerHTML = text.charAt(i);
+                element.appendChild(span);
+                const rect = span.getBoundingClientRect();
+
+                // Position cursor relative to the parent container
+                const parentRect = element.parentElement.getBoundingClientRect();
+                cursor.style.left = (rect.right - parentRect.left) + 'px';
+                cursor.style.top = (rect.top - parentRect.top) + 'px';
+
+                element.removeChild(span);
+                await new Promise(resolve => setTimeout(resolve, speed));
+            }
+            cursor.style.display = 'none';
+        }
+
+        async function startTerminalAnimation() {
+            const line1 = "Cybersecurity";
+            const line2 = "& Secure Systems";
+            const line3 = "Low-level Linux mastery, cybersecurity protocol analysis, and secure software development. Focused on kernel-level hardening, cybersecurity automation, and leveraging AI for threat detection.";
+
+            // Hero Section (Starts on load)
+            await typeText('type-line-1', 'cursor-1', line1, 80);
+            await typeText('type-line-2', 'cursor-2', line2, 80);
+            await typeText('type-line-3', 'cursor-3', line3, 50);
+        }
+
+        // Intersection Observer for Profile Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            const brandButton = document.querySelector('.brand-button');
+            brandButton.addEventListener('click', () => {
+                brandButton.classList.remove('is-clicked');
+                void brandButton.offsetWidth;
+                brandButton.classList.add('is-clicked');
+                setTimeout(() => brandButton.classList.remove('is-clicked'), 650);
+            });
+
+            const profileSection = document.getElementById('about');
+            const profile1 = "I am in Cybersecurity with a focus on system security and robust network defense. With a degree from Badji Mokhtar University, Annaba, I specialize in hardening critical infrastructure and analyzing complex network protocols to identify and mitigate vulnerabilities.";
+            const profile2 = "My skills span Linux administration, network traffic analysis, and the strategic application of AI to enhance threat detection. I focus on building a foundation of technical skill in traditional cybersecurity to ensure high-assurance security in modern environments.";
+            let animated = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+                        (async () => {
+                            await typeText('profile-text-1', 'profile-cursor', profile1, 30);
+                            await typeText('profile-text-2', 'profile-cursor', profile2, 30);
+                        })();
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            observer.observe(profileSection);
+        });
+    </script>
+</body>
+</html>
