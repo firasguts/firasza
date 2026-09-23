@@ -135,23 +135,6 @@
             to { background-position: 52px 52px; opacity: 0.58; }
         }
 
-        /* TERMINAL CURSOR ANIMATION */
-        .cursor {
-            display: inline-block;
-            width: 10px;
-            height: 1.2em;
-            background-color: white;
-            margin-left: 2px;
-            animation: blink 2s infinite;
-            vertical-align: middle;
-            line-height: 1;
-        }
-
-        @keyframes blink {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0; }
-        }
-
         .nav-glass {
             background: rgba(15, 17, 19, 0.95);
             backdrop-filter: blur(8px);
@@ -550,7 +533,7 @@
         }
     </style>
 </head>
-<body onload="startTerminalAnimation()">
+<body>
     <div class="aurora aurora-1"></div>
     <div class="aurora aurora-2"></div>
     <div class="aurora aurora-3"></div>
@@ -588,12 +571,11 @@
                 CYBERSECURITY & LINUX SPECIALIST
             </div>
             <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tighter leading-tight gradient-text">
-                <span id="type-line-1"></span><span id="cursor-1" class="cursor"></span><br>
-                <span id="type-line-2" class="text-blue-500" style="-webkit-text-fill-color: #3b82f6"></span><span id="cursor-2" class="cursor" style="display:none"></span>
+                <span id="type-line-1">Cybersecurity</span><br>
+                <span id="type-line-2" class="text-blue-500" style="-webkit-text-fill-color: #3b82f6">&amp; Secure Systems</span>
             </h1>
             <div class="relative inline-block">
-                <p id="type-line-3" class="text-lg text-slate-100 mb-10 max-w-2xl mx-auto leading-relaxed min-h-[3em] relative z-10"></p>
-                <span id="cursor-3" class="cursor absolute" style="display:none"></span>
+                <p id="type-line-3" class="text-lg text-slate-100 mb-10 max-w-2xl mx-auto leading-relaxed relative z-10">Low-level Linux mastery, cybersecurity protocol analysis, and secure software development. Focused on kernel-level hardening, cybersecurity automation, and leveraging AI for threat detection.</p>
             </div>
             <div class="flex justify-center gap-8">
                 <a href="#projects" class="btn-primary text-white px-8 py-3 rounded font-bold">Explore Projects</a>
@@ -656,9 +638,8 @@
                         <span class="text-blue-400">Profile</span>
                     </h2>
                     <div class="relative">
-                        <p id="profile-text-1" class="text-lg text-white leading-relaxed mb-6 min-h-[3em]"></p>
-                        <p id="profile-text-2" class="text-lg text-white leading-relaxed min-h-[3em]"></p>
-                        <span id="profile-cursor" class="cursor absolute" style="display:none"></span>
+                        <p id="profile-text-1" class="text-lg text-white leading-relaxed mb-6">I am in Cybersecurity with a focus on system security and robust network defense. With a degree from Badji Mokhtar University, Annaba, I specialize in hardening critical infrastructure and analyzing complex network protocols to identify and mitigate vulnerabilities.</p>
+                        <p id="profile-text-2" class="text-lg text-white leading-relaxed">My skills span Linux administration, network traffic analysis, and the strategic application of AI to enhance threat detection. I focus on building a foundation of technical skill in traditional cybersecurity to ensure high-assurance security in modern environments.</p>
                     </div>
                 </div>
             </div>
@@ -809,43 +790,6 @@
             }
         });
 
-        // Optimized typeText — uses textContent append instead of innerHTML
-        async function typeText(elementId, cursorId, text, speed = 50) {
-            const element = document.getElementById(elementId);
-            const cursor = document.getElementById(cursorId);
-
-            if (!cursor) return;
-            cursor.style.display = 'inline-block';
-
-            // Batch updates to avoid forcing layout on every character.
-            const batchSize = speed < 40 ? 3 : 2;
-
-            for (let i = 0; i < text.length; i += batchSize) {
-                element.textContent += text.substring(i, i + batchSize);
-
-                // Cursor position is updated only once per batch.
-                const rect = element.getBoundingClientRect();
-                const parentRect = element.parentElement.getBoundingClientRect();
-                cursor.style.left = (rect.right - parentRect.left) + 'px';
-                cursor.style.top = (rect.bottom - rect.height - parentRect.top) + 'px';
-
-                await new Promise(resolve => setTimeout(resolve, speed));
-            }
-            cursor.style.display = 'none';
-        }
-
-        async function startTerminalAnimation() {
-            const line1 = "Cybersecurity";
-            const line2 = "& Secure Systems";
-            const line3 = "Low-level Linux mastery, cybersecurity protocol analysis, and secure software development. Focused on kernel-level hardening, cybersecurity automation, and leveraging AI for threat detection.";
-
-            // Hero Section (Starts on load)
-            await typeText('type-line-1', 'cursor-1', line1, 80);
-            await typeText('type-line-2', 'cursor-2', line2, 80);
-            await typeText('type-line-3', 'cursor-3', line3, 50);
-        }
-
-        // Intersection Observer for Profile Animation
         document.addEventListener('DOMContentLoaded', () => {
             const brandButton = document.querySelector('.brand-button');
             brandButton.addEventListener('click', () => {
@@ -854,25 +798,6 @@
                 brandButton.classList.add('is-clicked');
                 setTimeout(() => brandButton.classList.remove('is-clicked'), 650);
             });
-
-            const profileSection = document.getElementById('about');
-            const profile1 = "I am in Cybersecurity with a focus on system security and robust network defense. With a degree from Badji Mokhtar University, Annaba, I specialize in hardening critical infrastructure and analyzing complex network protocols to identify and mitigate vulnerabilities.";
-            const profile2 = "My skills span Linux administration, network traffic analysis, and the strategic application of AI to enhance threat detection. I focus on building a foundation of technical skill in traditional cybersecurity to ensure high-assurance security in modern environments.";
-            let animated = false;
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting && !animated) {
-                        animated = true;
-                        (async () => {
-                            await typeText('profile-text-1', 'profile-cursor', profile1, 30);
-                            await typeText('profile-text-2', 'profile-cursor', profile2, 30);
-                        })();
-                    }
-                });
-            }, { threshold: 0.2 });
-
-            observer.observe(profileSection);
 
             // --- Floating particles (reduced from 18 to 8) ---
             (function createParticles() {
