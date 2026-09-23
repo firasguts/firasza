@@ -1,9 +1,9 @@
 {
   "name": "Zamouchi Mohamed Hamza Firas",
-  "short_name": "Zamouchi M.H. Firas",
+  "short_name": "M.H. Firas",
   "icons": [
     {
-      "src": "images/favicon.png",
+      "src": "favicon.png",
       "sizes": "256x256",
       "type": "image/png"
     }
