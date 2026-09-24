@@ -73,42 +73,6 @@
 
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        /* Aurora blobs — reduced blur from 130px to 80px, GPU-composited */
-        .aurora {
-            position: fixed;
-            width: 75vw;
-            height: 75vh;
-            border-radius: 100%;
-            filter: blur(18px);
-            z-index: -1;
-            opacity: 0.06;
-            pointer-events: none;
-            animation: drift 36s infinite alternate ease-in-out;
-            transform: translateZ(0);
-            contain: strict;
-            will-change: transform;
-        }
-        .aurora-1 {
-            top: -10%;
-            left: -10%;
-            background: radial-gradient(circle, rgba(15, 17, 19, 0.9) 0%, var(--arch-blue) 42%, transparent 74%);
-            animation-duration: 24s;
-        }
-        .aurora-2 {
-            bottom: -10%;
-            right: -10%;
-            background: radial-gradient(circle, rgba(15, 17, 19, 0.9) 0%, #3b82f6 42%, transparent 74%);
-            animation-duration: 30s;
-            animation-delay: -10s;
-        }
-        .aurora-3 {
-            top: 20%;
-            right: -10%;
-            background: radial-gradient(circle, rgba(15, 17, 19, 0.9) 0%, #60a5fa 42%, transparent 74%);
-            animation-duration: 27s;
-            animation-delay: -5s;
-        }
-
         /* Cyber grid — the moving pattern lives on ::before and animates via transform only,
            so the browser composites it instead of repainting the grid every frame. */
         .cyber-grid {
@@ -137,13 +101,6 @@
             transform: translateZ(0);
             animation: grid-drift 24s ease-in-out infinite alternate;
             will-change: transform;
-        }
-
-        @keyframes drift {
-            0% { transform: translateZ(0) translate(0, 0) scale(1); }
-            33% { transform: translateZ(0) translate(4%, 5%) scale(1.05) rotate(3deg); }
-            66% { transform: translateZ(0) translate(-4%, 3%) scale(0.96) rotate(-3deg); }
-            100% { transform: translateZ(0) translate(5%, -3%) scale(1.03) rotate(2deg); }
         }
 
         @keyframes grid-drift {
@@ -375,24 +332,6 @@
             transform: scale(1.015);
         }
 
-        /* Floating particles */
-        .particle {
-            position: fixed;
-            background: rgba(59, 130, 246, 0.35);
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: 0;
-            animation: float-up linear infinite;
-            contain: strict;
-            transform: translateZ(0);
-        }
-        @keyframes float-up {
-            0% { transform: translateZ(0) translateY(100vh) scale(0); opacity: 0; }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
-            100% { transform: translateZ(0) translateY(-10vh) scale(1); opacity: 0; }
-        }
-
         /* Card icon float on hover */
         .practical-card i {
             transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
@@ -457,67 +396,6 @@
             contain: strict;
         }
 
-        /* Depth orbs — reduced blur, GPU composited */
-        .depth-orb {
-            position: fixed;
-            border-radius: 50%;
-            pointer-events: none;
-            z-index: -1;
-            animation: orb-float ease-in-out infinite alternate;
-            transform: translateZ(0);
-            contain: strict;
-        }
-        .depth-orb-1 {
-            width: 220px;
-            height: 220px;
-            top: 12%;
-            left: 8%;
-            background: rgba(59, 130, 246, 0.06);
-            filter: blur(40px);
-            animation-duration: 18s;
-        }
-        .depth-orb-2 {
-            width: 140px;
-            height: 140px;
-            top: 55%;
-            right: 12%;
-            background: rgba(96, 165, 250, 0.05);
-            filter: blur(28px);
-            animation-duration: 14s;
-            animation-delay: -5s;
-        }
-        .depth-orb-3 {
-            width: 320px;
-            height: 320px;
-            bottom: 8%;
-            left: 35%;
-            background: rgba(37, 99, 235, 0.04);
-            filter: blur(45px);
-            animation-duration: 24s;
-            animation-delay: -12s;
-        }
-        @keyframes orb-float {
-            0% { transform: translateZ(0) translate(0, 0) scale(1); }
-            33% { transform: translateZ(0) translate(25px, -30px) scale(1.08); }
-            66% { transform: translateZ(0) translate(-15px, 20px) scale(0.94); }
-            100% { transform: translateZ(0) translate(20px, -10px) scale(1.05); }
-        }
-
-        /* Ambient center glow — simplified to static */
-        .ambient-glow {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 100vw;
-            height: 100vh;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: -1;
-            background: radial-gradient(ellipse at center, rgba(59, 130, 246, 0.03) 0%, transparent 55%);
-            opacity: 0.7;
-            contain: strict;
-        }
-
         /* CSS containment on sections for layout isolation.
            content-visibility skips layout/paint for off-screen sections entirely,
            freeing up the main thread for hover/scroll responsiveness. */
@@ -546,9 +424,6 @@
         #contact, #contact h2, #contact a { opacity: 1 !important; visibility: visible !important; }
 
         /* Pause always-on decorative animations while the tab is in the background. */
-        body.tab-hidden .aurora,
-        body.tab-hidden .depth-orb,
-        body.tab-hidden .particle,
         body.tab-hidden .gradient-text,
         body.tab-hidden .cyber-grid::before {
             animation-play-state: paused;
@@ -556,7 +431,7 @@
 
         /* Performance fallback for devices that prefer reduced motion. */
         @media (prefers-reduced-motion: reduce) {
-            .aurora, .cyber-grid, .depth-orb, .particle, .gradient-text {
+            .cyber-grid, .gradient-text {
                 animation: none !important;
             }
         }
@@ -579,18 +454,23 @@
                 transition-duration: 0.01ms !important;
             }
         }
+
+        /* Final low-latency pass: keep the same background layers, but make them
+           cheap to paint and keep pointer-driven states compositor-friendly. */
+        body::before {
+            background-image: none;
+        }
+
+        .cyber-grid {
+            mask-image: none;
+            -webkit-mask-image: none;
+        }
+
     </style>
 </head>
 <body>
-    <div class="aurora aurora-1"></div>
-    <div class="aurora aurora-2"></div>
-    <div class="aurora aurora-3"></div>
     <div class="cyber-grid" aria-hidden="true"></div>
     <div class="vignette"></div>
-    <div class="depth-orb depth-orb-1"></div>
-    <div class="depth-orb depth-orb-2"></div>
-    <div class="depth-orb depth-orb-3"></div>
-    <div class="ambient-glow"></div>
 
     <nav class="fixed w-full z-50 nav-glass">
         <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
@@ -835,21 +715,6 @@
                     window.setTimeout(() => brandButton.classList.remove('is-clicked'), 650);
                 }, { passive: true });
             }
-
-            // Keep the decorative particles minimal; this avoids input lag while preserving the subtle motion.
-            (function createParticles() {
-                for (let i = 0; i < 4; i++) {
-                    const p = document.createElement('div');
-                    p.classList.add('particle');
-                    p.style.left = Math.random() * 100 + 'vw';
-                    p.style.animationDuration = (Math.random() * 20 + 18) + 's';
-                    p.style.animationDelay = (Math.random() * 12) + 's';
-                    const size = (Math.random() * 2.5 + 1) + 'px';
-                    p.style.width = size;
-                    p.style.height = size;
-                    document.body.appendChild(p);
-                }
-            })();
 
             // Lightweight scroll based animation using IntersectionObserver for low-overhead entrance effects.
             const animatedEls = document.querySelectorAll('[data-aos]');
